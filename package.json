@@ -1,0 +1,17 @@
+{
+  "name": "bravo-vui",
+  "version": "1.0.0",
+  "description": "This is a ui library for vue.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config build/webpack.base.config.js",
+    "build": "webpack --config build/webpack.build.config.js"
+  },
+  "keywords": [
+    "vue",
+    "ui",
+    "typescript"
+  ],
+  "author": "kuangbeibei",
+  "license": "ISC"
+}
