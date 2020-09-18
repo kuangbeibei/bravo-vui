@@ -9,7 +9,7 @@ function resolvePath(dir) {
 module.exports = {
     mode: 'production',
     entry: {
-        'bravo-vui': './packages/index.js'
+        'bravovui': './packages/index.js'
     },
     output: {
         path: resolvePath('package'),

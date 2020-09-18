@@ -1,8 +1,8 @@
 {
   "name": "bravo-vui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a ui library for vue.",
-  "main": "index.js",
+  "main": "package/bravovui.js",
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.base.config.js",
     "build": "webpack --config build/webpack.build.config.js"
@@ -13,5 +13,17 @@
     "typescript"
   ],
   "author": "kuangbeibei",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "babel-loader": "^8.1.0",
+    "bravovui": "file:bravovui-1.0.0.tgz",
+    "html-webpack-plugin": "^4.4.1",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
 }

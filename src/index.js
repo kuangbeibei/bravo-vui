@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./index.vue";
-import BravoVui from "../package/bravo-vui";
+import BravoVui from "bravovui";
 
 Vue.use(BravoVui);
 
