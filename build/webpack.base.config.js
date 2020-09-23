@@ -19,12 +19,22 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: resolvePath('src'),
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                options: {
+                    presets: ['@vue/babel-preset-jsx']
+                }
             },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },

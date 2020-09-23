@@ -1,7 +1,9 @@
 import Hello from "./Hello";
+import Level from "./Level"
 
 const components = [
-    Hello
+    Hello,
+    Level
 ]
 
 const install = function (Vue) {
@@ -17,5 +19,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
     version: '1.0.0',
     install,
-    Hello
+    Hello,
+    Level
 }
