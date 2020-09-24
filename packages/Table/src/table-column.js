@@ -33,7 +33,8 @@ export default {
             columnId: owner.tableId + '_column_' + columnIdSeed++,
             label: this.label,
             type: this.type,
-            prop: this.prop
+            prop: this.prop,
+            width: this.width ? this.width : 80
         });
     },
 }
