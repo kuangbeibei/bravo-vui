@@ -23,11 +23,11 @@ export default {
             <tr>
                 {
                     this.columns.map(column => {
-                        return <th>{column.label}</th>
+                        return <th><div class="cell">{column.label}</div></th>
                     })
                 }
             </tr>
            
         </table>)
-    }
+    },
 }

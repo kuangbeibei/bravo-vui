@@ -29,7 +29,7 @@ export default {
                                     columns.map(column => {
                                         return Object.keys(column).map(c => {
                                             if (column[c] in item) {
-                                                return <td>{item[column[c]]}</td>
+                                                return <td><div class="cell">{item[column[c]]}</div></td>
                                             }
                                         })
                                     })
