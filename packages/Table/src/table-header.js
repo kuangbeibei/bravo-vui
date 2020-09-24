@@ -1,29 +1,33 @@
 /**
  * colgroup,col很重要，因为要控制每一个列的相同宽度
  */
+import {mapStates} from "./store/helper";
 export default {
+    name: 'KkHeader',
+    props: {
+        store: {
+            required: true
+        }
+    },
+    computed: {
+        ...mapStates({
+            columns: 'columns'
+        })
+    },
     render(h) {
-        return  (<table>
-            <caption>Superheros and sidekicks</caption>
-            <colgroup>
-                <col></col>
-                <col span="2" class="batman"></col>
-                <col span="2" class="flash"></col>
-            </colgroup>
+        return  (<table
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+        >
             <tr>
-                <td> </td>
-                <th scope="col">Batman</th>
-                <th scope="col">Robin</th>
-                <th scope="col">The Flash</th>
-                <th scope="col">Kid Flash</th>
+                {
+                    this.columns.map(column => {
+                        return <th>{column.label}</th>
+                    })
+                }
             </tr>
-            <tr>
-                <th>Skill</th>
-                <td>Smarts</td>
-                <td>Dex, acrobat</td>
-                <td>Super speed</td>
-                <td>Super speed</td>
-            </tr>
+           
         </table>)
     }
 }

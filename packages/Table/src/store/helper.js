@@ -20,6 +20,9 @@ export function mapStates(mapper) {
         } else {
             console.error('invalid value type');
         }
-    })
+        if (fn) {
+            res[key] = fn;
+        }
+    });
     return res;
 }

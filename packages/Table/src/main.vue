@@ -2,10 +2,15 @@
     <div 
         class="bravo-table"
     >
-        <table-header />
-        <table-body>
+        <table-header 
+            :store="store"
+        />
+        <table-body
+            :store="store"
+        />
+        <div>
             <slot></slot>
-        </table-body>
+        </div>
     </div>
 </template>
 <script>
@@ -13,6 +18,8 @@ import "../style/table.scss";
 import TableHeader from './table-header';
 import TableBody from "./table-body";
 import {createStore, mapStates} from "./store/helper";
+let tableIdSeed = 1;
+
 export default {
     name: 'KkTable',
     components: {
@@ -42,6 +49,9 @@ export default {
         return {
 
         }
+    },
+    created(){
+        this.tableId = 'bravo-table_' + tableIdSeed++;
     }
 }
 </script>
