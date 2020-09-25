@@ -25,17 +25,17 @@
     </div>
 </template>
 <script>
-import KkHello from "../packages/Hello/src/main.vue";
-import KkLevel from "../packages/Level/src/Level.js";
-import BravoTable from "../packages/Table/src/main.vue";
-import BravoTableColumn from "../packages/Table/src/table-column.js";
+// import KkHello from "../packages/Hello/src/main.vue";
+// import KkLevel from "../packages/Level/src/Level.js";
+// import BravoTable from "../packages/Table/src/main.vue";
+// import BravoTableColumn from "../packages/Table/src/table-column.js";
 
 export default {
     components: {
-        KkHello,
-        KkLevel,
-        BravoTable,
-        BravoTableColumn
+        // KkHello,
+        // KkLevel,
+        // BravoTable,
+        // BravoTableColumn
     },
     data() {
         return {
