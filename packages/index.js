@@ -1,12 +1,8 @@
-import Hello from "./Hello";
-import Level from "./Level";
-import Table from "./Table";
+import BravoTable from "./Table";
 import BravoTableColumn from "./Table-column"
 
 const components = [
-    Hello,
-    Level,
-    Table,
+    BravoTable,
     BravoTableColumn
 ]
 
@@ -23,8 +19,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
     version: '1.0.0',
     install,
-    Hello,
-    Level,
-    Table,
+    BravoTable,
     BravoTableColumn
 }
