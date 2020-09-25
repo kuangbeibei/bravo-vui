@@ -35,7 +35,7 @@ export default {
             label: this.label,
             type: this.type,
             prop: this.prop,
-            width: this.width ? this.width : 'auto',
+            width: this.width,
             minWidth: 80
         });
     },

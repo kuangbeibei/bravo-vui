@@ -7,11 +7,12 @@ export default {
     props: {
         store: {
             required: true
-        }
+        },
+        columnWidths: Array
     },
     computed: {
         ...mapStates({
-            columns: 'columns'
+            columns: 'columns',
         })
     },
     render(h) {
@@ -19,15 +20,18 @@ export default {
             cellspacing="0"
             cellpadding="0"
             border="0"
+            class="table-header"
         >
-            <tr>
-                {
-                    this.columns.map(column => {
-                        return <th><div class="cell" style={{width: column.width !== 'auto' ? column.width + 'px' : 'auto', minWidth: '80px'}}>{column.label}</div></th>
-                    })
-                }
-            </tr>
-           
+            <thead>
+                <tr>
+                    {
+                        this.columns.map((column, index) => {
+                            return <th><div class="cell" style={{width: this.columnWidths[index], minWidth: '80px'}}>{column.label}</div></th>
+                        })
+                    }
+                </tr>
+            </thead>
         </table>)
     },
+
 }

@@ -2,18 +2,20 @@
     <div 
         class="bravo-table"
     >
-        <table-header 
+        <table-header
             :store="store"
+            :columnWidths = widths
         />
         <table-body
             :store="store"
+            @setColumnWidth="setColumnWidth"
         />
         <div>
             <slot></slot>
         </div>
     </div>
 </template>
-<script>
+<script type="text/babel">
 import "../style/table.scss";
 import TableHeader from './table-header';
 import TableBody from "./table-body";
@@ -33,8 +35,10 @@ export default {
             default: () => []
         }
     },
-    computed: {
-
+    methods: {
+        setColumnWidth(widths) {
+            this.widths = widths;
+        }
     },
     watch: {
         data: {
@@ -47,7 +51,7 @@ export default {
     data(){
         this.store = createStore(this);
         return {
-
+            widths: []
         }
     },
     created(){

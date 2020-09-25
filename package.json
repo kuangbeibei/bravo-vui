@@ -1,6 +1,6 @@
 {
   "name": "bravo-vui",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "This is a ui library for vue.",
   "main": "package/bravovui.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "@vue/babel-preset-jsx": "^1.1.2",
     "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.4.1",
+    "lodash": "^4.17.20",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.12",
