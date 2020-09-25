@@ -1,16 +1,16 @@
 <template>
     <div>
-        <kk-table :data="tableData">
-            <kk-table-column
+        <bravo-table :data="tableData">
+            <bravo-table-column
                 prop="name"
                 label="名字"
             />
-            <kk-table-column
+            <bravo-table-column
                 prop="age"
                 label="年龄"
                 width=120
             />
-        </kk-table>
+        </bravo-table>
 
         <!-- <kk-hello 
             :name="name"
@@ -27,15 +27,15 @@
 <script>
 import KkHello from "../packages/Hello/src/main.vue";
 import KkLevel from "../packages/Level/src/Level.js";
-import KkTable from "../packages/Table/src/main.vue";
-import KkTableColumn from "../packages/Table/src/table-column.js";
+import BravoTable from "../packages/Table/src/main.vue";
+import BravoTableColumn from "../packages/Table/src/table-column.js";
 
 export default {
     components: {
         KkHello,
         KkLevel,
-        KkTable,
-        KkTableColumn
+        BravoTable,
+        BravoTableColumn
     },
     data() {
         return {

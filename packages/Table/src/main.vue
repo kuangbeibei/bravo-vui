@@ -21,7 +21,7 @@ import {createStore, mapStates} from "./store/helper";
 let tableIdSeed = 1;
 
 export default {
-    name: 'KkTable',
+    name: 'BravoTable',
     components: {
         TableHeader,
         TableBody

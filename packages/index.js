@@ -1,9 +1,13 @@
 import Hello from "./Hello";
-import Level from "./Level"
+import Level from "./Level";
+import Table from "./Table";
+import BravoTableColumn from "./Table-column"
 
 const components = [
     Hello,
-    Level
+    Level,
+    Table,
+    BravoTableColumn
 ]
 
 const install = function (Vue) {
@@ -20,5 +24,7 @@ export default {
     version: '1.0.0',
     install,
     Hello,
-    Level
+    Level,
+    Table,
+    BravoTableColumn
 }

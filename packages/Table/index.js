@@ -1,8 +1,8 @@
-import KkTable from './src/table';
+import BravoTable from './src/table/main.vue';
 
 /* istanbul ignore next */
-KkTable.install = function(Vue) {
-  Vue.component(KkTable.name, ElTable);
+BravoTable.install = function(Vue) {
+  Vue.component(BravoTable.name, ElTable);
 };
 
-export default KkTable;
+export default BravoTable;

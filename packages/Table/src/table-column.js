@@ -1,7 +1,7 @@
 let columnIdSeed = 1;
 
 export default {
-    name: 'KkTableColumn',
+    name: 'BravoTableColumn',
     props: {
         prop: String,
         label: String,
