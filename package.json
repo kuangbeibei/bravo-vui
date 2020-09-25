@@ -1,6 +1,6 @@
 {
   "name": "bravo-vui",
-  "version": "1.0.46",
+  "version": "1.0.48",
   "description": "This is a ui library for vue.",
   "main": "package/bravovui.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
     "css-loader": "^4.3.0",
     "dart-sass": "^1.25.0",
     "sass": "^1.26.11",
