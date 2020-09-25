@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path');
+const {merge} = require('webpack-merge');
 const {VueLoaderPlugin} = require('vue-loader');
 
 function resolvePath(dir) {
