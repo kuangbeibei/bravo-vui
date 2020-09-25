@@ -23,7 +23,7 @@ export default {
             <tr>
                 {
                     this.columns.map(column => {
-                        return <th><div class="cell" style={{width: column.width + 'px'}}>{column.label}</div></th>
+                        return <th><div class="cell" style={{width: column.width !== 'auto' ? column.width + 'px' : 'auto', minWidth: '80px'}}>{column.label}</div></th>
                     })
                 }
             </tr>

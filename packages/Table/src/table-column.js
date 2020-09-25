@@ -8,7 +8,8 @@ export default {
         type: {
             type: String,
             default: 'default',
-        }
+        },
+        width: String
     },
     computed: {
         owner() {
@@ -34,7 +35,8 @@ export default {
             label: this.label,
             type: this.type,
             prop: this.prop,
-            width: this.width ? this.width : 80
+            width: this.width ? this.width : 'auto',
+            minWidth: 80
         });
     },
 }

@@ -29,12 +29,11 @@ export default {
                                     columns.map(column => {
                                         return Object.keys(column).map(c => {
                                             if (column[c] in item) {
-                                                return <td><div class="cell" style={{width: column.width + 'px'}}>{item[column[c]]}</div></td>
+                                            return <td>{this.renderCell(column, item, c)}</td>
                                             }
                                         })
                                     })
                                 }
-                                
                             </tr>
                         })
                     }
@@ -42,4 +41,9 @@ export default {
             </table>
         )
     },
+    methods: {
+        renderCell(column, item, c) {
+            return <div class="cell" style={{width: column.width !== 'auto' ? column.width + 'px' : 'auto', minWidth: '80px'}}>{item[column[c]]}</div>
+        }
+    }
 }

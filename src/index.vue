@@ -8,6 +8,7 @@
             <kk-table-column
                 prop="age"
                 label="年龄"
+                width=120
             />
         </kk-table>
 
