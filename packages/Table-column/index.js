@@ -1,4 +1,4 @@
-import BravoTableColumn from '../table/src/table-column';
+import BravoTableColumn from '../Table/src/table-column';
 
 /* istanbul ignore next */
 BravoTableColumn.install = function(Vue) {

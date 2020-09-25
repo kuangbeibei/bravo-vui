@@ -43,6 +43,9 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
+                options: {
+                    presets: ['@vue/babel-preset-jsx']
+                }
             },
             {
                 test: /\.vue$/,

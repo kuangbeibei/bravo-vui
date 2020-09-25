@@ -1,4 +1,4 @@
-import BravoTable from './src/table/main.vue';
+import BravoTable from './src/main.vue';
 
 /* istanbul ignore next */
 BravoTable.install = function(Vue) {
