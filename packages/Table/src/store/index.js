@@ -8,6 +8,9 @@ Watcher.prototype.mutations = {
     insertColumn(states, column) {
         states.columns.push(column)
     },
+    updateColumns(states, columns) {
+        states.columns = columns
+    }
 };
 
 Watcher.prototype.commit = function (name, ...args) {

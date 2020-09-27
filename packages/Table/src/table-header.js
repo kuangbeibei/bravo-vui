@@ -1,14 +1,13 @@
 /**
  * colgroup,col很重要，因为要控制每一个列的相同宽度
  */
-import {mapStates} from "./store/helper";
+import { mapStates } from "./store/helper";
 export default {
     name: 'KkHeader',
     props: {
         store: {
             required: true
         },
-        columnWidths: Array
     },
     computed: {
         ...mapStates({
@@ -16,7 +15,8 @@ export default {
         })
     },
     render(h) {
-        return  (<table
+        const columns = this.columns;
+        return (<table
             cellspacing="0"
             cellpadding="0"
             border="0"
@@ -25,8 +25,8 @@ export default {
             <thead>
                 <tr>
                     {
-                        this.columns.map((column, index) => {
-                            return <th><div class="cell" style={{width: this.columnWidths[index], minWidth: '80px'}}>{column.label}</div></th>
+                        columns.map(column => {
+                            return <th><div class="cell" style={{  minWidth: '80px', width: column.width + 'px' }}>{column.label}</div></th>
                         })
                     }
                 </tr>

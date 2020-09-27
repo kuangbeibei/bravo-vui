@@ -9,12 +9,7 @@ export default {
     props: {
         store: {
             required: true
-        }
-    },
-    data() {
-        return {
-            widths: [],
-        }
+        },
     },
     computed: {
         ...mapStates({
@@ -23,6 +18,7 @@ export default {
         })
     },
     render(h) {
+        console.log('收到了新的 columns body~~~~~',this.columns);
         const data = this.data;
         const columns = this.columns;
         return (
@@ -43,9 +39,8 @@ export default {
                                             <bravo-table-cell 
                                                 column={column} 
                                                 item={item} 
-                                                prop={column.prop} 
-                                                index={index} 
-                                                widths={this.widths}
+                                                prop={column.prop}
+                                                index={index}
                                             />
                                         </td>
                                     })
@@ -57,10 +52,4 @@ export default {
             </table>
         )
     },
-    updated() {
-        if (round === this.data.length - 1) {
-            this.$nextTick(() => {})
-            this.$emit('setColumnWidth', this.widths);
-        }
-    }
 }

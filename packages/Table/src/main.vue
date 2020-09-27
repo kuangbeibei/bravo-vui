@@ -1,15 +1,18 @@
 <template>
     <div 
         class="bravo-table"
+        ref="tableWrapper"
     >
-        <table-header
-            :store="store"
-            :columnWidths = widths
-        />
-        <table-body
-            :store="store"
-            @setColumnWidth="setColumnWidth"
-        />
+        <div ref="headerWrapper">
+            <table-header
+                :store="store"
+            />
+        </div>
+        <div ref="bodyWrapper">
+            <table-body
+                :store="store"
+            />
+        </div>
         <div>
             <slot></slot>
         </div>
@@ -35,11 +38,6 @@ export default {
             default: () => []
         }
     },
-    methods: {
-        setColumnWidth(widths) {
-            this.widths = widths;
-        }
-    },
     watch: {
         data: {
             immediate: true,
@@ -48,14 +46,56 @@ export default {
             }
         }
     },
+    computed: {
+        tableWrapper() {
+            return this.$refs.tableWrapper
+        },
+        winWidth() {
+            return window.innerWidth
+        },
+        ...mapStates({
+            columns: 'columns'
+        })
+    },
     data(){
         this.store = createStore(this);
         return {
-            widths: []
+            tableWidth: '100%'
         }
     },
     created(){
         this.tableId = 'bravo-table_' + tableIdSeed++;
+    },
+    mounted(){
+        this.doLayout();
+    },
+    methods: {
+        doLayout() {
+            let columnsLength = this.columns.length;
+            this.tableWidth = this.computeTableWrapperWidth();
+            let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1);
+            let columns = this.columns.map(column => {
+                if (!column.width) {
+                    column.width = columnWidthDefault
+                }
+                return column
+            });
+            this.store.commit('updateColumns', columns);
+        },
+        computeTableWrapperWidth() {
+            let parent = this.$refs.tableWrapper.offsetParent;
+            console.log('this.$refs.tableWrapper,', parent);
+            let offsetLeft = 0;
+            let offsetRight = 0;
+            while (parent) {
+                offsetLeft += parent.offsetLeft;
+                parent = parent.offsetParent;
+            };
+            return this.winWidth - offsetLeft - offsetRight
+        },
+    },
+    beforeDestroy() {
+
     }
 }
 </script>
