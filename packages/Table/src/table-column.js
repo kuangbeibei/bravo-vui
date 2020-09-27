@@ -29,7 +29,6 @@ export default {
         }
     },
     mounted() {
-        console.log('table-column mounted');
         const owner = this.owner;
         owner.store.commit('insertColumn', {
             columnId: owner.tableId + '_column_' + columnIdSeed++,

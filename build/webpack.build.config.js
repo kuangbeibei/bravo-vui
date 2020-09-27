@@ -1,23 +1,25 @@
 'use strict'
 const path = require('path');
 const {merge} = require('webpack-merge');
-const {VueLoaderPlugin} = require('vue-loader');
+const baseWebpackConfig = require('./webpack.base.config');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolvePath(dir) {
     return path.resolve(__dirname, '..', dir)
 }
 
-module.exports = {
+module.exports = merge(baseWebpackConfig, {
     mode: 'production',
     entry: {
         'bravovui': './packages/index.js'
     },
     output: {
-        path: resolvePath('package'),
-        publicPath: '/package/',
+        path: resolvePath('lib'),
+        publicPath: '/lib/',
         library: 'BravoVui',
         libraryTarget: 'umd',
-        umdNamedDefine: true
+        umdNamedDefine: true,
+        filename: 'bravo-vui-common.js'
     },
     externals: {
         vue: {
@@ -41,17 +43,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            },
-            {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
                     'css-loader',
                     'sass-loader'
                 ]
@@ -59,6 +55,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new MiniCssExtractPlugin({
+            filename: 'css/bravo-vui.min.css'
+        })
     ]
-}
+}) 

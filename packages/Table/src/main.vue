@@ -3,15 +3,20 @@
         class="bravo-table"
         ref="tableWrapper"
     >
-        <div ref="headerWrapper">
+        <div class="table-header-wrapper" ref="headerWrapper" :style="{width: `${tableWidth}px`}">
             <table-header
                 :store="store"
             />
         </div>
-        <div ref="bodyWrapper">
+        <div class="table-body-wrapper" ref="bodyWrapper" :style="{width: `${tableWidth}px`}">
             <table-body
                 :store="store"
             />
+            <div class="bravo-table__empty-text" v-if="!data || data.length === 0">
+                <span>
+                    <slot name="empty">{{emptyText || '暂无数据'}}</slot>
+                </span>
+            </div>
         </div>
         <div>
             <slot></slot>
@@ -31,12 +36,21 @@ export default {
         TableHeader,
         TableBody
     },
+    directives: {
+        loading: {
+            bind: function(el, bindings, vnode) {
+                console.log('el',el, 'bindings', bindings, 'vnode', vnode);
+            }
+        }
+    },
     props: {
         stripe: Boolean,
         data: {
             type: Array,
             default: () => []
-        }
+        },
+        emptyText: String,
+        loading: Boolean
     },
     watch: {
         data: {
@@ -60,7 +74,7 @@ export default {
     data(){
         this.store = createStore(this);
         return {
-            tableWidth: '100%'
+            tableWidth: 0
         }
     },
     created(){
@@ -72,7 +86,8 @@ export default {
     methods: {
         doLayout() {
             let columnsLength = this.columns.length;
-            this.tableWidth = this.computeTableWrapperWidth();
+            let computeTableWidth = this.computeTableWrapperWidth();
+            this.tableWidth = computeTableWidth > this.$refs.tableWrapper.offsetWidth ? this.$refs.tableWrapper.offsetWidth : computeTableWidth;
             let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1);
             let columns = this.columns.map(column => {
                 if (!column.width) {
@@ -84,7 +99,6 @@ export default {
         },
         computeTableWrapperWidth() {
             let parent = this.$refs.tableWrapper.offsetParent;
-            console.log('this.$refs.tableWrapper,', parent);
             let offsetLeft = 0;
             let offsetRight = 0;
             while (parent) {
@@ -94,8 +108,5 @@ export default {
             return this.winWidth - offsetLeft - offsetRight
         },
     },
-    beforeDestroy() {
-
-    }
 }
 </script>

@@ -36,10 +36,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugn({
-            template: resolvePath('public/index.html'),
-            filename: 'app.html'
-        }),
         new VueLoaderPlugin()
     ]
 }

@@ -18,7 +18,6 @@ export default {
         })
     },
     render(h) {
-        console.log('收到了新的 columns body~~~~~',this.columns);
         const data = this.data;
         const columns = this.columns;
         return (
