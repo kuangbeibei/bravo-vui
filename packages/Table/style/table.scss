@@ -15,6 +15,16 @@
         max-width: 100%;
     }
 }
+.bravo-table.bravo-table--striped {
+    tbody {
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        tr:hover {
+            background-color: aliceblue;
+        }
+    }
+}
 table {
     width: 100%;
     max-width: 100%;
@@ -53,7 +63,7 @@ table {
         color: #606266;
         background-color: #fff;
         tr:hover {
-            background-color: rgba(0,0,0,.02);
+            background-color: aliceblue;
         }
         tr:last-child {
             border-bottom: 0 none;

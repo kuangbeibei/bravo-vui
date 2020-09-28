@@ -2,6 +2,9 @@
     <div 
         class="bravo-table"
         ref="tableWrapper"
+        :class="[{
+            'bravo-table--striped': stripe,
+        }]"
     >
         <div class="table-header-wrapper" ref="headerWrapper">
             <table-header
@@ -43,7 +46,7 @@ export default {
             default: () => []
         },
         emptyText: String,
-        loading: Boolean
+        stripe: Boolean,
     },
     watch: {
         data: {
