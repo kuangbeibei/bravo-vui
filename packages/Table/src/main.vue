@@ -88,7 +88,6 @@ export default {
                 }
                 return column
             });
-            console.log('columns',columns);
             this.store.commit('updateColumns', columns);
         },
         computeTableWrapperWidth() {
