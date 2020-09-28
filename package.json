@@ -1,8 +1,8 @@
 {
   "name": "bravo-vui",
-  "version": "1.0.51",
+  "version": "1.0.53",
   "description": "This is a ui library for vue.",
-  "main": "package/bravovui.js",
+  "main": "lib/bravo-vui-common.js",
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "webpack --config build/webpack.build.config.js"
