@@ -36,13 +36,6 @@ export default {
         TableHeader,
         TableBody
     },
-    directives: {
-        loading: {
-            bind: function(el, bindings, vnode) {
-                console.log('el',el, 'bindings', bindings, 'vnode', vnode);
-            }
-        }
-    },
     props: {
         stripe: Boolean,
         data: {
