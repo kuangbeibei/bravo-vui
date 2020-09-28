@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<bravo-table :data="tableData" v-loading="loading">
-			<bravo-table-column prop="instanceName" label="主机名称" />
+			<bravo-table-column prop="instanceName" label="主机名称">
+				<h1>我就测试一下</h1>
+			</bravo-table-column>
 			<bravo-table-column prop="region" label="区域" />
 			<bravo-table-column prop="cpu" label="cpu" />
 			<bravo-table-column prop="memory" label="memory" />

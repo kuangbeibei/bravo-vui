@@ -21,6 +21,7 @@ export default {
         }
     },
     render(h){
+        console.log('this.$slots.default :',this.$slots.default);
         return h('div', this.$slots.default);
     },
     data(){
