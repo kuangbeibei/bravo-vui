@@ -1,6 +1,8 @@
 .bravo-table {
+    overflow: hidden;
     width: 100%;
     max-width: 100%;
+    border: 1px solid #EBEEF5;
     .bravo-table__empty-text {
         text-align: center;
         color: #909399;
@@ -8,21 +10,20 @@
         font-size: 14px;
         font-weight: 200;
     }
-    .table-header-wrapper {
-        background-color: #fff;
-    }
-    .table-body-wrapper {
-        border-bottom: 1px solid #EBEEF5;
+    .table-header-wrapper, .table-body-wrapper {
+        width: 100%;
+        max-width: 100%;
     }
 }
 table {
     width: 100%;
     max-width: 100%;
     border: 0 none;
-    font-size: 14px!important;
+    font-size: 12px!important;
     font-family: sans-serif;
     border-collapse: collapse;
     letter-spacing: 1px;
+    box-sizing: border-box;
     td {
         overflow: hidden;
         box-sizing: border-box;
@@ -32,7 +33,10 @@ table {
     }
     td,
     th {
-        padding: 12px 0;
+        box-sizing: border-box;
+        padding-top: 12px;
+        padding-left: 8px;
+        padding-bottom: 12px;
         text-align: left;
     }
     th {
@@ -43,9 +47,11 @@ table {
     }
     thead {
         color: #909399;
+        background-color: #fafafa;
     }
     tbody {
         color: #606266;
+        background-color: #fff;
         tr:hover {
             background-color: rgba(0,0,0,.02);
         }

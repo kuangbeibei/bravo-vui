@@ -3,12 +3,12 @@
         class="bravo-table"
         ref="tableWrapper"
     >
-        <div class="table-header-wrapper" ref="headerWrapper" :style="{width: `${tableWidth}px`}">
+        <div class="table-header-wrapper" ref="headerWrapper">
             <table-header
                 :store="store"
             />
         </div>
-        <div class="table-body-wrapper" ref="bodyWrapper" :style="{width: `${tableWidth}px`}">
+        <div class="table-body-wrapper" ref="bodyWrapper">
             <table-body
                 :store="store"
             />
@@ -81,13 +81,14 @@ export default {
             let columnsLength = this.columns.length;
             let computeTableWidth = this.computeTableWrapperWidth();
             this.tableWidth = computeTableWidth > this.$refs.tableWrapper.offsetWidth ? this.$refs.tableWrapper.offsetWidth : computeTableWidth;
-            let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1);
+            let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1) - 8;
             let columns = this.columns.map(column => {
                 if (!column.width) {
                     column.width = columnWidthDefault
                 }
                 return column
             });
+            console.log('columns',columns);
             this.store.commit('updateColumns', columns);
         },
         computeTableWrapperWidth() {
@@ -98,7 +99,7 @@ export default {
                 offsetLeft += parent.offsetLeft;
                 parent = parent.offsetParent;
             };
-            return this.winWidth - offsetLeft - offsetRight
+            return this.winWidth - offsetLeft - offsetRight;
         },
     },
 }
