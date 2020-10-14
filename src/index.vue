@@ -1,16 +1,23 @@
 <template>
 	<div>
 		<bravo-table :data="tableData" v-loading="loading" stripe>
-			<bravo-table-column prop="instanceName" label="主机名称" />
-			<bravo-table-column prop="region" label="区域" />
+			<bravo-table-column prop="instanceName" label="主机名称" type="expand">
+				<div>111</div>
+				<template slot-scope="props">
+					<div>我是template里面渲染的，props是{{props}}</div>
+				</template>
+			</bravo-table-column>
+			<bravo-table-column prop="region" label="区域">
+				<div>222</div>
+			</bravo-table-column>
 			<bravo-table-column prop="cpu" label="cpu" />
 			<bravo-table-column prop="memory" label="memory" />
-			<bravo-table-column prop="cpuUsageMin" label="cpu-min" />
-			<bravo-table-column prop="cpuUsageAvg" label="cpu-avg" />
-			<bravo-table-column prop="cpuUsageMax" label="cpu-max" />
-			<bravo-table-column prop="memoryUsageMin" label="mem-min" />
-			<bravo-table-column prop="memoryUsageAvg" label="mem-avg" />
-			<bravo-table-column prop="memoryUsageMax" label="mem-max" />
+			<bravo-table-column prop="cpuUsageMin" label="cpu-min" :formatter="format" />
+			<bravo-table-column prop="cpuUsageAvg" label="cpu-avg" :formatter="format" />
+			<bravo-table-column prop="cpuUsageMax" label="cpu-max" :formatter="format" />
+			<bravo-table-column prop="memoryUsageMin" label="mem-min" :formatter="format" />
+			<bravo-table-column prop="memoryUsageAvg" label="mem-avg" :formatter="format" />
+			<bravo-table-column prop="memoryUsageMax" label="mem-max" :formatter="format" />
 		</bravo-table>
 	</div>
 </template>
@@ -28,6 +35,9 @@ export default {
 		}, 1000)
 	},
 	methods: {
+		format(row, column, cellValue, index) {
+			return cellValue.toFixed(2);
+		},
 		getData() {
 			this.tableData = [
 				{

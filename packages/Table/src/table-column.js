@@ -10,7 +10,10 @@ export default {
             default: 'default',
         },
         width: String,
-        formatter: Function
+        formatter: {
+            type: Function | undefined,
+            default: undefined
+        }
     },
     computed: {
         owner() {
@@ -36,9 +39,10 @@ export default {
             type: this.type,
             prop: this.prop,
             width: this.width,
-            minWidth: 80
+            minWidth: 80,
+            formatter: this.formatter
         };
-        column.renderCell = (h, { item, column, $index }) => {
+        column.renderCell = (h, { item, column, $index }) => { // 一定要有h才能return jsx语法
             if (column && column.formatter) {
                 return column.formatter(item, column, item[column.prop], $index);
             } else {

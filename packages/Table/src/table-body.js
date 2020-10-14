@@ -34,15 +34,6 @@ export default {
                             return <tr>
                                 {
                                     columns.map((column, index) => {
-                                        // return <td class="table-body-td">
-                                        //     <bravo-table-cell 
-                                        //         column={column} 
-                                        //         item={item} 
-                                        //         prop={column.prop}
-                                        //         index={index}
-                                        //     />
-                                        // </td>
-                                        console.log('item',item);
                                         return this.renderCell(h, column, item, index)
                                     })
                                 }
