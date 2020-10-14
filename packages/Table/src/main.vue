@@ -81,17 +81,19 @@ export default {
     },
     methods: {
         doLayout() {
-            let columnsLength = this.columns.length;
-            let computeTableWidth = this.computeTableWrapperWidth();
-            this.tableWidth = computeTableWidth > this.$refs.tableWrapper.offsetWidth ? this.$refs.tableWrapper.offsetWidth : computeTableWidth;
-            let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1) - 8;
-            let columns = this.columns.map(column => {
-                if (!column.width) {
-                    column.width = columnWidthDefault
-                }
-                return column
-            });
-            this.store.commit('updateColumns', columns);
+            // TODO 优化
+            setTimeout(() => {
+                let columnsLength = this.columns.length;
+                this.tableWidth = this.$refs.tableWrapper.offsetWidth;
+                let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1) - 8;
+                let columns = this.columns.map(column => {
+                    if (!column.width) {
+                        column.width = columnWidthDefault
+                    }
+                    return column
+                });
+                this.store.commit('updateColumns', columns);
+            }, 0);
         },
         computeTableWrapperWidth() {
             let parent = this.$refs.tableWrapper.offsetParent;

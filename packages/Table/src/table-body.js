@@ -34,14 +34,16 @@ export default {
                             return <tr>
                                 {
                                     columns.map((column, index) => {
-                                        return <td class="table-body-td">
-                                            <bravo-table-cell 
-                                                column={column} 
-                                                item={item} 
-                                                prop={column.prop}
-                                                index={index}
-                                            />
-                                        </td>
+                                        // return <td class="table-body-td">
+                                        //     <bravo-table-cell 
+                                        //         column={column} 
+                                        //         item={item} 
+                                        //         prop={column.prop}
+                                        //         index={index}
+                                        //     />
+                                        // </td>
+                                        console.log('item',item);
+                                        return this.renderCell(h, column, item, index)
                                     })
                                 }
                             </tr>
@@ -51,4 +53,15 @@ export default {
             </table>
         )
     },
+    methods: {
+        renderCell(h, column, item, $index) {
+            return (
+                <td class="table-body-td">
+                    <div class="cell" style={{minWidth: '80px', width: column.width + 'px'}}>{
+                        column.renderCell(h, { item, column, $index })
+                    }</div>
+                </td>
+            )
+        }
+    }
 }

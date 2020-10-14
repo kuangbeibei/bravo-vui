@@ -11,7 +11,6 @@ function resolvePath(dir) {
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
-    entry: resolvePath('src/index.js'),
     output: {
         path: resolvePath('dist'),
         filename: 'bundle.js'

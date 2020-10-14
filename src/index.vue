@@ -18,8 +18,18 @@
 export default {
 	data() {
 		return {
-			loading: false,
-			tableData: [
+			loading: true,
+			tableData: []
+		};
+	},
+	mounted() {
+		setTimeout(() => {
+			this.getData();
+		}, 1000)
+	},
+	methods: {
+		getData() {
+			this.tableData = [
 				{
 					tenantID: "8a748b076cabb74e016cafc670d50019",
 					tenantName: "cloud-rd@yonghui.cn",
@@ -1424,9 +1434,9 @@ export default {
 					memoryUsage95: 0,
 					memoryUsage50: 0,
 				},
-			],
-		};
+			];
+			this.loading = false;
+		}
 	},
-	methods: {},
 };
 </script>

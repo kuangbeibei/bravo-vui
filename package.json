@@ -1,6 +1,6 @@
 {
   "name": "bravo-vui",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "description": "This is a ui library for vue.",
   "main": "lib/bravo-vui-common.js",
   "scripts": {

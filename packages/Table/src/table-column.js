@@ -9,7 +9,8 @@ export default {
             type: String,
             default: 'default',
         },
-        width: String
+        width: String,
+        formatter: Function
     },
     computed: {
         owner() {
@@ -25,18 +26,30 @@ export default {
     },
     data(){
         return {
-            columns: []
+            columnConfig: null
         }
     },
-    mounted() {
-        const owner = this.owner;
-        owner.store.commit('insertColumn', {
-            columnId: owner.tableId + '_column_' + columnIdSeed++,
+    created() {
+        // 在这个阶段处理好数据，mounted阶段发送数据
+        let column = {
             label: this.label,
             type: this.type,
             prop: this.prop,
             width: this.width,
             minWidth: 80
-        });
+        };
+        column.renderCell = (h, { item, column, $index }) => {
+            if (column && column.formatter) {
+                return column.formatter(item, column, item[column.prop], $index);
+            } else {
+                return item[column.prop]
+            }
+        }
+        this.columnConfig = column;
+    },
+    mounted() {
+        const owner = this.owner;
+        this.columnConfig.columnId = owner.tableId + '_column_' + columnIdSeed++;
+        owner.store.commit('insertColumn', this.columnConfig);
     },
 }

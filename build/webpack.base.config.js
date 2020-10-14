@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path');
-const HtmlWebpackPlugn = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
 
 function resolvePath(dir) {
