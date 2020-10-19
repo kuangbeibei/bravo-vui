@@ -26,7 +26,9 @@ export default {
                 <tr>
                     {
                         columns.map(column => {
-                            return <th><div class="cell" style={{  minWidth: '80px', width: column.width + 'px' }}>{column.label}</div></th>
+                            return <th>{
+                                <div class="cell" style={{ width: column.width + 'px' }}>{column.label}</div>
+                            }</th>
                         })
                     }
                 </tr>

@@ -9,7 +9,13 @@ Watcher.prototype.mutations = {
         states.columns.push(column)
     },
     updateColumns(states, columns) {
-        states.columns = columns
+        states.columns = columns;
+    },
+    setExpandedRows(states) {
+        states.expandedRows = Array(states.data.length).fill(false);
+    },
+    updateExpandedRows(states, expandedRows) {
+        states.expandedRows = expandedRows;
     }
 };
 

@@ -64,7 +64,8 @@ export default {
             return window.innerWidth
         },
         ...mapStates({
-            columns: 'columns'
+            columns: 'columns',
+            expandedRows: 'expandedRows'
         })
     },
     data(){
@@ -87,8 +88,11 @@ export default {
                 this.tableWidth = this.$refs.tableWrapper.offsetWidth;
                 let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1) - 8;
                 let columns = this.columns.map(column => {
-                    if (!column.width) {
+                    if (!column.width && !column.type) {
                         column.width = columnWidthDefault
+                    }
+                    if (column.type === 'expand') {
+                        column.width = 20
                     }
                     return column
                 });
@@ -105,6 +109,11 @@ export default {
             };
             return this.winWidth - offsetLeft - offsetRight;
         },
+        changeExpand($index) {
+            let _expandedRows = JSON.parse(JSON.stringify(this.expandedRows));
+            _expandedRows[$index] = !(this.expandedRows)[$index];
+            this.store.commit('updateExpandedRows', _expandedRows)
+        }
     },
 }
 </script>

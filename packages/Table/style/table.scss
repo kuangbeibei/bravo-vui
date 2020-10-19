@@ -71,5 +71,20 @@ table {
     }
     .cell {
         line-height: 23px;
+        box-sizing: border-box;
+        .icon-expand {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+        .icon-expand-arrow-right {
+            background: url('../../../public/images/expand-arrow-right.png');
+        }
+        .icon-expand-arrow-bottom {
+            background: url('../../../public/images/expand-arrow-bottom.png');
+        }
+    }
+    .cell.expand {
+        cursor: pointer;
     }
 }

@@ -34,7 +34,7 @@ export default {
                             return <tr>
                                 {
                                     columns.map((column, index) => {
-                                        return this.renderCell(h, column, item, index)
+                                        return this.renderCell(h, column, item, idx)
                                     })
                                 }
                             </tr>
@@ -46,13 +46,11 @@ export default {
     },
     methods: {
         renderCell(h, column, item, $index) {
-            return (
-                <td class="table-body-td">
-                    <div class="cell" style={{minWidth: '80px', width: column.width + 'px'}}>{
-                        column.renderCell(h, { item, column, $index })
-                    }</div>
-                </td>
-            )
+            return <td class="table-body-td">
+                <div class="cell" style={{width: column.width + 'px'}}>{
+                    column.renderCell(h, { item, column, $index })
+                }</div>
+            </td>
         }
     }
 }

@@ -1,28 +1,34 @@
 <template>
 	<div>
 		<bravo-table :data="tableData" v-loading="loading" stripe>
-			<bravo-table-column prop="instanceName" label="主机名称" type="expand">
-				<div>111</div>
+			<bravo-table-column type="expand">
 				<template slot-scope="props">
 					<div>我是template里面渲染的，props是{{props}}</div>
 				</template>
 			</bravo-table-column>
-			<bravo-table-column prop="region" label="区域">
-				<div>222</div>
-			</bravo-table-column>
-			<bravo-table-column prop="cpu" label="cpu" />
-			<bravo-table-column prop="memory" label="memory" />
-			<bravo-table-column prop="cpuUsageMin" label="cpu-min" :formatter="format" />
-			<bravo-table-column prop="cpuUsageAvg" label="cpu-avg" :formatter="format" />
-			<bravo-table-column prop="cpuUsageMax" label="cpu-max" :formatter="format" />
-			<bravo-table-column prop="memoryUsageMin" label="mem-min" :formatter="format" />
-			<bravo-table-column prop="memoryUsageAvg" label="mem-avg" :formatter="format" />
-			<bravo-table-column prop="memoryUsageMax" label="mem-max" :formatter="format" />
+			<bravo-table-column prop="instanceName" label="主机名称" width="230" />
+			<bravo-table-column prop="region" label="区域" width="80" />
+			<bravo-table-column prop="cpu" label="cpu" width="50" />
+			<bravo-table-column prop="memory" label="memory" width="50" />
+			<bravo-table-column prop="cpuUsageMin" label="cpu-min" :formatter="format" width="80" />
+			<bravo-table-column prop="cpuUsageAvg" label="cpu-avg" :formatter="format" width="80" />
+			<bravo-table-column prop="cpuUsageMax" label="cpu-max" :formatter="format" width="80" />
+			<bravo-table-column prop="memoryUsageMin" label="mem-min" :formatter="format" width="80" />
+			<bravo-table-column prop="memoryUsageAvg" label="mem-avg" :formatter="format" width="80" />
+			<bravo-table-column prop="memoryUsageMax" label="mem-max" :formatter="format" width="80" />
 		</bravo-table>
 	</div>
 </template>
 <script>
+import bravoTable from "../packages/Table/src/main.vue";
+import bravoTableColumn from "../packages/Table-column/index.js";
+import Loading from "../packages/Loading/src/directive.js";
+
 export default {
+	components: {
+		bravoTable,
+		bravoTableColumn
+	},
 	data() {
 		return {
 			loading: true,

@@ -1,5 +1,5 @@
 let columnIdSeed = 1;
-
+import {mapStates} from "./store/helper.js";
 export default {
     name: 'BravoTableColumn',
     props: {
@@ -13,7 +13,7 @@ export default {
         formatter: {
             type: Function | undefined,
             default: undefined
-        }
+        },
     },
     computed: {
         owner() {
@@ -22,14 +22,18 @@ export default {
                 parent = parent.$parent;
             };
             return parent;
-        }
+        },
+        ...mapStates({
+            expandedRows: 'expandedRows',
+        })
     },
     render(h){
         return h('div', this.$slots.default);
     },
     data(){
         return {
-            columnConfig: null
+            columnConfig: null,
+            init: false
         }
     },
     created() {
@@ -39,10 +43,23 @@ export default {
             type: this.type,
             prop: this.prop,
             width: this.width,
-            minWidth: 80,
-            formatter: this.formatter
+            formatter: this.formatter,
         };
         column.renderCell = (h, { item, column, $index }) => { // 一定要有h才能return jsx语法
+            if (column.type && column.type === 'expand') {
+                if (!this.init) {
+                    this.owner.store.commit('setExpandedRows');
+                    this.init = true
+                }
+                const callback = (e) => {
+                    this.owner.store.toggleRowExpansion($index);
+                }
+                if (this.$scopedSlots.default) {
+                    let children = this.$scopedSlots.default(item);
+                    // console.log('children', children);
+                }
+                return <i class="arrow-right" on-click={callback}> {this.owner.expandedRows && this.owner.expandedRows[$index] ? '收起' : '展开'} </i>
+            }
             if (column && column.formatter) {
                 return column.formatter(item, column, item[column.prop], $index);
             } else {
@@ -52,8 +69,7 @@ export default {
         this.columnConfig = column;
     },
     mounted() {
-        const owner = this.owner;
-        this.columnConfig.columnId = owner.tableId + '_column_' + columnIdSeed++;
-        owner.store.commit('insertColumn', this.columnConfig);
+        this.columnConfig.columnId = this.owner.tableId + '_column_' + columnIdSeed++;
+        this.owner.store.commit('insertColumn', this.columnConfig);
     },
 }
