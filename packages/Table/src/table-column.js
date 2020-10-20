@@ -1,5 +1,4 @@
 let columnIdSeed = 1;
-import {mapStates} from "./store/helper.js";
 export default {
     name: 'BravoTableColumn',
     props: {
@@ -23,9 +22,6 @@ export default {
             };
             return parent;
         },
-        ...mapStates({
-            expandedRows: 'expandedRows',
-        })
     },
     render(h){
         return h('div', this.$slots.default);
@@ -48,17 +44,31 @@ export default {
         column.renderCell = (h, { item, column, $index }) => { // 一定要有h才能return jsx语法
             if (column.type && column.type === 'expand') {
                 if (!this.init) {
+                    this.init = true;
                     this.owner.store.commit('setExpandedRows');
-                    this.init = true
                 }
+                // let children;
                 const callback = (e) => {
                     this.owner.store.toggleRowExpansion($index);
+
+                    // if (this.owner.expandedRows[$index] && this.$scopedSlots.default) {
+                    //     children = this.$scopedSlots.default(item); // 在这赋值不起作用
+                    // } else {
+                    //     console.log('我隐藏啦')
+                    //     children = null;
+                    // }
                 }
-                if (this.$scopedSlots.default) {
-                    let children = this.$scopedSlots.default(item);
-                    // console.log('children', children);
-                }
-                return <i class="arrow-right" on-click={callback}> {this.owner.expandedRows && this.owner.expandedRows[$index] ? '收起' : '展开'} </i>
+                this.owner.renderExpanded = (h, item) => {
+                    if (this.owner.expandedRows && this.owner.expandedRows[$index]) {
+                        return this.$scopedSlots.default
+                        ? this.$scopedSlots.default(item)
+                        : this.$slots.default;
+                    }
+                };
+                return (<div>
+                    <i class="arrow-right" on-click={callback}> {this.owner.expandedRows && this.owner.expandedRows[$index] ? '收起' : '展开'} </i>
+                    {/* {this.owner.expandedRows && this.owner.expandedRows[$index] && this.$scopedSlots.default(item) } */}
+                </div>);
             }
             if (column && column.formatter) {
                 return column.formatter(item, column, item[column.prop], $index);
