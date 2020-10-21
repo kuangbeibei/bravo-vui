@@ -33,7 +33,6 @@ export default {
                     {
                         data.map((item, idx) => {
                             if (this.table.renderExpanded) {
-                                console.log('我进来renderExpanded');
                                 return (
                                     [<tr>
                                         {
@@ -43,11 +42,11 @@ export default {
                                         }
                                     </tr>,
                                     // 这里就要用到colspan了
-                                    <tr>
-                                        {
+                                    this.table.expandedRows && this.table.expandedRows[idx] ? <tr>
+                                       <td colspan={this.table.expandedRows.length}>{
                                             this.table.renderExpanded(h, item)
-                                        }
-                                    </tr>]
+                                        }</td> 
+                                    </tr> : null]
                                 )
                             } else {
                                 return <tr>
@@ -65,9 +64,6 @@ export default {
         )
     },
     methods: {
-        rowRender() {
-
-        },
         cellRender(h, column, item, $index) {
             return <td class="table-body-td">
                 <div class="cell" style={{width: column.width + 'px'}}>{

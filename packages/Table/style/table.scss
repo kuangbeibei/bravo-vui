@@ -72,19 +72,13 @@ table {
     .cell {
         line-height: 23px;
         box-sizing: border-box;
-        .icon-expand {
+        .arrow-expand {
+            margin-top: 5px;
             display: block;
-            width: 20px;
-            height: 20px;
+            cursor: pointer;
+            &:hover {
+                color: red;
+            }
         }
-        .icon-expand-arrow-right {
-            background: url('../../../public/images/expand-arrow-right.png');
-        }
-        .icon-expand-arrow-bottom {
-            background: url('../../../public/images/expand-arrow-bottom.png');
-        }
-    }
-    .cell.expand {
-        cursor: pointer;
     }
 }
