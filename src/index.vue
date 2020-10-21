@@ -3,7 +3,12 @@
 		<bravo-table :data="tableData" v-loading="loading" stripe>
 			<bravo-table-column type="expand">
 				<template slot-scope="props">
-					<div>我是template里面渲染的，props是{{props}}</div>
+					<div v-for="(value, key) in props" :key="key"> 
+						<div style="display: flex; margin-left: 55px; margin-top: 10px">
+							<p style="width: 140px; color: #99a9bf;">{{key}} :</p>
+							<p>   {{value}}</p>
+						</div>
+					</div>
 				</template>
 			</bravo-table-column>
 			<bravo-table-column prop="instanceName" label="主机名称" width="230" />
@@ -20,15 +25,15 @@
 	</div>
 </template>
 <script>
-import bravoTable from "../packages/Table/src/main.vue";
-import bravoTableColumn from "../packages/Table-column/index.js";
-import Loading from "../packages/Loading/src/directive.js";
+// import bravoTable from "../packages/Table/src/main.vue";
+// import bravoTableColumn from "../packages/Table-column/index.js";
+// import Loading from "../packages/Loading/src/directive.js";
 
 export default {
-	components: {
-		bravoTable,
-		bravoTableColumn
-	},
+	// components: {
+	// 	bravoTable,
+	// 	bravoTableColumn
+	// },
 	data() {
 		return {
 			loading: true,
