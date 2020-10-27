@@ -43,7 +43,7 @@ export default {
                                     </tr>,
                                     // 这里就要用到colspan了
                                     this.table.expandedRows && this.table.expandedRows[idx] ? <tr>
-                                       <td colspan={this.table.expandedRows.length}>{
+                                       <td colspan={this.table.columns.length}>{
                                             this.table.renderExpanded(h, item)
                                         }</td> 
                                     </tr> : null]

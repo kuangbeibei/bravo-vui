@@ -50,7 +50,14 @@ table {
         text-align: left;
     }
     th {
+        position: relative;
         font-weight: bold;
+        .csv-export {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
     }
     tr {
         border-bottom: 1px solid #EBEEF5;

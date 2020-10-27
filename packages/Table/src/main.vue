@@ -1,36 +1,32 @@
 <template>
-    <div 
-        class="bravo-table"
-        ref="tableWrapper"
-        :class="[{
+<div class="bravo-table" ref="tableWrapper" :class="[{
             'bravo-table--striped': stripe,
-        }]"
-    >
-        <div class="table-header-wrapper" ref="headerWrapper">
-            <table-header
-                :store="store"
-            />
-        </div>
-        <div class="table-body-wrapper" ref="bodyWrapper">
-            <table-body
-                :store="store"
-            />
-            <div class="bravo-table__empty-text" v-if="!data || data.length === 0">
-                <span>
-                    <slot name="empty">{{emptyText || '暂无数据'}}</slot>
-                </span>
-            </div>
-        </div>
-        <div>
-            <slot></slot>
+        }]">
+    <div class="table-header-wrapper" ref="headerWrapper">
+        <table-header :store="store" :expo="expo" />
+    </div>
+    <div class="table-body-wrapper" ref="bodyWrapper">
+        <table-body :store="store" />
+        <div class="bravo-table__empty-text" v-if="!data || data.length === 0">
+            <span>
+                <slot name="empty">{{emptyText || '暂无数据'}}</slot>
+            </span>
         </div>
     </div>
+    <div>
+        <slot></slot>
+    </div>
+</div>
 </template>
-<script type="text/babel">
+
+<script>
 import "../style/table.scss";
 import TableHeader from './table-header';
 import TableBody from "./table-body";
-import {createStore, mapStates} from "./store/helper";
+import {
+    createStore,
+    mapStates
+} from "./store/helper";
 let tableIdSeed = 1;
 
 export default {
@@ -47,6 +43,7 @@ export default {
         },
         emptyText: String,
         stripe: Boolean,
+        expo: String | undefined
     },
     watch: {
         data: {
@@ -68,16 +65,16 @@ export default {
             expandedRows: 'expandedRows'
         })
     },
-    data(){
+    data() {
         this.store = createStore(this);
         return {
             tableWidth: 0
         }
     },
-    created(){
+    created() {
         this.tableId = 'bravo-table_' + tableIdSeed++;
     },
-    mounted(){
+    mounted() {
         this.doLayout();
     },
     methods: {
@@ -86,7 +83,7 @@ export default {
             setTimeout(() => {
                 let columnsLength = this.columns.length;
                 this.tableWidth = this.$refs.tableWrapper.offsetWidth;
-                let columnWidthDefault = parseFloat(this.tableWidth/columnsLength).toFixed(1) - 8;
+                let columnWidthDefault = parseFloat(this.tableWidth / columnsLength).toFixed(1) - 8;
                 let columns = this.columns.map(column => {
                     if (!column.width && !column.type) {
                         column.width = columnWidthDefault
