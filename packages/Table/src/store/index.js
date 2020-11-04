@@ -16,6 +16,15 @@ Watcher.prototype.mutations = {
     },
     updateExpandedRows(states, expandedRows) {
         states.expandedRows = expandedRows;
+    },
+    setSortItems(states) {
+        states.sortItems = Array(states.columns.length).fill({
+            arrowUp: false,
+            arrowDown: false
+        })
+    },
+    updateSortItems(states, items) {
+        states.sortItems = items;
     }
 };
 

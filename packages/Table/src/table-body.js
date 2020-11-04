@@ -67,7 +67,7 @@ export default {
         cellRender(h, column, item, $index) {
             return <td class="table-body-td">
                 <div class="cell" style={{width: column.width + 'px'}}>{
-                    column.renderCell(h, { item, column, $index })
+                    column.renderBodyCell(h, { item, column, $index })
                 }</div>
             </td>
         }

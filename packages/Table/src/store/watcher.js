@@ -6,13 +6,17 @@ export default Vue.extend({
             states: {
                 data: [], // 渲染的数据来源，是对 table 中的 data 过滤排序后的结果
                 columns: [],
-                expandedRows: []
+                expandedRows: [],
+                sortItems: []
             }
         }
     },
     methods: {
         toggleRowExpansion($index) {
             this.table.changeExpand($index)
+        },
+        toggleSortArrow($index, flag) {
+            this.table.toggleSortArrow($index, flag)
         }
     }
 })

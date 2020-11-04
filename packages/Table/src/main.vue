@@ -62,7 +62,8 @@ export default {
         },
         ...mapStates({
             columns: 'columns',
-            expandedRows: 'expandedRows'
+            expandedRows: 'expandedRows',
+            sortItems: 'sortItems'
         })
     },
     data() {
@@ -110,6 +111,25 @@ export default {
             let _expandedRows = JSON.parse(JSON.stringify(this.expandedRows));
             _expandedRows[$index] = !(this.expandedRows)[$index];
             this.store.commit('updateExpandedRows', _expandedRows)
+        },
+        toggleSortArrow($index, flag) {
+            let _sortItems = JSON.parse(JSON.stringify(this.sortItems));
+            _sortItems = _sortItems.map((item, idx) => {
+                if ($index === idx) {
+                    if (flag === 'descending') {
+                        item.arrowDown = !item.arrowDown;
+                        item.arrowUp = false;
+                    } else {
+                        item.arrowUp = !item.arrowUp;
+                        item.arrowDown = false;
+                    }
+                } else {
+                    item.arrowUp = false;
+                    item.arrowDown = false;
+                };
+                return item;
+            });
+            this.store.commit('updateSortItems', _sortItems)
         }
     },
 }

@@ -13,6 +13,10 @@ export default {
             type: Function | undefined,
             default: undefined
         },
+        sortable: {
+            type: Boolean,
+            default: false
+        },
     },
     computed: {
         owner() {
@@ -29,7 +33,8 @@ export default {
     data(){
         return {
             columnConfig: null,
-            init: false
+            expandedInit: false,
+            sortInit: false
         }
     },
     created() {
@@ -38,13 +43,39 @@ export default {
             label: this.label,
             type: this.type,
             prop: this.prop,
-            width: this.width,
+            width: this.sortable ? Number(this.width) + 20 :this.width,
             formatter: this.formatter,
+            sortable: this.sortable,
+            sorts: {
+                arrowUp: false,
+                arrowDown: false
+            }
         };
-        column.renderCell = (h, { item, column, $index }) => { // 一定要有h才能return jsx语法
+        column.renderSortHeaderCell = (h, {column, idx}) => {
+            if (!this.sortInit) {
+                this.sortInit = true;
+                this.owner.store.commit('setSortItems')
+            }
+            const callback = e => {
+                const target = e.target;
+                const classList = Array.from(target.classList);
+                if (classList.includes('sort-caret')) {
+                    const flag = classList.includes('descending') ? 'descending' : 'ascending';
+                    this.owner.store.toggleSortArrow(idx, flag)
+                }
+            }
+            return <div class="cell" style={{ width: column.width + 'px' }}>
+                {column.label}
+                <span class="caret-wrapper" on-click={(e) => callback(e)}>
+                    <i class={["sort-caret ascending", {"active": this.owner.sortItems && this.owner.sortItems[idx] && this.owner.sortItems[idx].arrowUp}]} ></i>
+                    <i class={["sort-caret descending", {"active": this.owner.sortItems && this.owner.sortItems[idx] && this.owner.sortItems[idx].arrowDown}]}></i>
+                </span>
+            </div>
+        }
+        column.renderBodyCell = (h, { item, column, $index }) => { // 一定要有h才能return jsx语法
             if (column.type && column.type === 'expand') {
-                if (!this.init) {
-                    this.init = true;
+                if (!this.expandedInit) {
+                    this.expandedInit = true;
                     this.owner.store.commit('setExpandedRows');
                 }
                 // let children;

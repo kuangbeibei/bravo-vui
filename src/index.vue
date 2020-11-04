@@ -16,10 +16,10 @@
         <bravo-table-column prop="cpu" label="cpu" width="50" />
         <bravo-table-column prop="memory" label="memory" width="50" />
         <bravo-table-column prop="cpuUsageMin" label="cpu-min" :formatter="format" width="80" />
-        <bravo-table-column prop="cpuUsageAvg" label="cpu-avg" :formatter="format" width="80" />
+        <bravo-table-column prop="cpuUsageAvg" label="cpu-avg" :formatter="format" width="80" sortable />
         <bravo-table-column prop="cpuUsageMax" label="cpu-max" :formatter="format" width="80" />
         <bravo-table-column prop="memoryUsageMin" label="mem-min" :formatter="format" width="80" />
-        <bravo-table-column prop="memoryUsageAvg" label="mem-avg" :formatter="format" width="80" />
+        <bravo-table-column prop="memoryUsageAvg" label="mem-avg" :formatter="format" width="80" sortable />
         <bravo-table-column prop="memoryUsageMax" label="mem-max" :formatter="format" width="80" />
     </bravo-table>
 </div>
