@@ -8,3 +8,4 @@ import "../lib/css/bravo-vui.min.css"
 new Vue({
     render: h => h(App)
 }).$mount('#app');
+

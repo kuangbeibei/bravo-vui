@@ -5,6 +5,9 @@ Watcher.prototype.mutations = {
     setData(states, data) {
         states.data = data;
     },
+    updateData(states, data) { // 语义上和上面不一样，上面在被使用的context中是通过父传子属性改变的。这里是组件内部改变。
+        states.data = data
+    },
     insertColumn(states, column) {
         states.columns.push(column)
     },
@@ -36,5 +39,6 @@ Watcher.prototype.commit = function (name, ...args) {
         throw new Error(`Action not found: ${ name }`);
     }
 };
+
 
 export default Watcher;

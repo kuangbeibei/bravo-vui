@@ -10,12 +10,6 @@ export default {
         },
         expo: String
     },
-    data() {
-        return {
-            sortUpArrow: false,
-            sortDownArrow: false
-        }
-    },
     computed: {
         ...mapStates({
             columns: 'columns',

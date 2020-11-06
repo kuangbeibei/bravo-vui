@@ -27,6 +27,10 @@ import {
     createStore,
     mapStates
 } from "./store/helper";
+import {
+    sortWithCondition
+} from "../../../src/utils/tool";
+
 let tableIdSeed = 1;
 
 export default {
@@ -47,6 +51,7 @@ export default {
     },
     watch: {
         data: {
+            deep: true,
             immediate: true,
             handler(value) {
                 this.store.commit('setData', value);
@@ -123,13 +128,22 @@ export default {
                         item.arrowUp = !item.arrowUp;
                         item.arrowDown = false;
                     }
+                    if (!item.arrowDown && !item.arrowUp) {
+                        // 如果没有选中排序，恢复默认列表
+                        this.$nextTick(() => {
+                            this.store.commit('updateData', this.data);
+                        })
+                    }
                 } else {
                     item.arrowUp = false;
                     item.arrowDown = false;
                 };
                 return item;
             });
-            this.store.commit('updateSortItems', _sortItems)
+            this.store.commit('updateSortItems', _sortItems);
+
+            // 排序
+            this.store.commit('updateData', sortWithCondition(this.data, this.columns[$index].prop, flag));
         }
     },
 }
